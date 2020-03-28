@@ -11,9 +11,14 @@
     <script>
       var map;
       function initMap() {
+        var coord = {lat: 10.4432397, lng: -64.1859825} 
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 10.4432397, lng: -64.1859825},
+          center: coord,
           zoom: 15
+        });
+        var marker = new google.maps.Marker({
+        position: coord,
+        map: map
         });
       }
     </script>
