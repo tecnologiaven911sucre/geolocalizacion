@@ -7,23 +7,10 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" >
   </head>
   <body>
-    <div id="map"></div>
-    <p>hola este es el de kelipson</p>
-    <script>
-      var map;
-      function initMap() {
-        var coord = {lat: 10.4432397, lng: -64.1859825} 
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: coord,
-          zoom: 18
-        });
-        var marker = new google.maps.Marker({
-        position: coord,
-        map: map
-        });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=initMap"
-    async defer></script>
+    <div id="map">
+      <iframe src="https://www.google.com/maps/d/embed?mid=1pp-C9ZRooXpQqVb5iVphewuyC8mYl80w" width="1000" height="500"></iframe>
+    </div>
+ 
+
   </body>
 </html>
