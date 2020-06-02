@@ -19,21 +19,36 @@
       
        <!-- fin botones y lineas antes de la contenido principal -->
       @if(session()->has('info'))
-            <h3>{{ session('info') }}</h3>
+      <div class="alert alert-success">{{ session('info') }}</div>
       @endif
       
       <table class="table">
           <thead>
               <tr>
-                  <th>Direccion IP</th>
-                  <th>Codigo</th>
-                  <th>Serial</th>
-                  <th>Estado</th>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Role</th>
                   <th>Acciones</th>
               </tr>
           </thead>
           <tbody>
-              
+              @foreach ($users as $user)    
+                <tr>
+                <td>{{$user->id}}</td>
+                <td>{{$user->name}}</td>
+                <td>{{$user->email}}</td>
+                <td>{{$user->role->display_name}}</td>
+                <td>
+                        <a class="btn btn-primary btn-sm" href="{{route('usuarios.edit',$user->id)}}">Editar</a>
+                        <form style="display: inline" action="{{route('usuarios.destroy',$user->id)}}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                        </form>    
+                </td>
+                </tr>
+              @endforeach
           </tbody>
       </table>
 

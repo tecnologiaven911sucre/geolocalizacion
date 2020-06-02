@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckRole
+class CheckRoles
 {
     /**
      * Handle an incoming request.
@@ -14,7 +14,13 @@ class CheckRole
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-        return $next($request);
+    {   
+        $roles = array_slice(func_get_args(), 2);
+
+            if(auth()->user()->hasRoles($roles)){
+                return $next($request);
+            }
+
+        return redirect('/');
     }
 }

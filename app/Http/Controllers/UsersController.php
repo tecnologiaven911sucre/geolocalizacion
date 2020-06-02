@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\http\request\UpdateUserRequest;
 
 class UsersController extends Controller
-{
+{   
+    function __construct(){
+        $this->middleware([
+            'auth',
+        'roles:admin'
+        ]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -57,8 +65,10 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $user = User::findOrFail($id);
+
+        return view('users.edit',compact('user'));
     }
 
     /**
@@ -68,9 +78,13 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(UpdateUserRequest $request, $id)
+    {   
+        $user = User::findOrFail($id);
+
+        $user->update($request->all());
+
+        return back()->with('info','usuario actualizado');
     }
 
     /**
@@ -81,6 +95,10 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->delete();
+
+        return back()->with('info','El usuario fue eliminado exitosamente');
     }
 }

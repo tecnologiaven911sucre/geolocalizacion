@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// Route::get('/roles',function(){
+//     return App\Role::with('user')->get();
+// });
+
 Route::get('/','HomeController@index');
 
 
