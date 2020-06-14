@@ -4,7 +4,7 @@
 
 <div class="col-md-9">
     <div class="card">
-        <div class="card-header">Centro de comando</div>
+        <div class="card-header">Estados</div>
 
         <div class="card-body">
             @if (session('status'))
@@ -18,10 +18,10 @@
         {{-- <h1 class="h2">Crear camara</h1> --}}
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" href="{{route('centrodecomando.index')}}">Listado</a>
+                <a class="nav-link" href="{{route('estados.index')}}">Listado de estatus</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{route('centrodecomando.create')}}">Registrar centro de comando</a>
+                <a class="nav-link active" href="{{route('estados.create')}}">Registrar estatus</a>
             </li>
         </ul>
         
@@ -31,9 +31,9 @@
       @if(session()->has('info'))
             <h3>{{ session('info') }}</h3>
       @endif
-       <form action="/centrodecomando" method="POST">
-        @include('cc.form')
-        {{-- @include('drawers.form',['btnText' => 'Actualizar']) --}}
+       <form action="{{route('centrodecomando.update',$cc->id)}}" method="POST">
+        @method('put')
+        @include('cc.form',['btnText' => 'Actualizar'])
     </form>
         </div>
     </div>

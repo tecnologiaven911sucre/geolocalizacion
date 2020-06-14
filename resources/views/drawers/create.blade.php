@@ -18,10 +18,10 @@
         {{-- <h1 class="h2">Crear camara</h1> --}}
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" href="{{route('cajas.index')}}">Listado de cajas</a>
+                <a class="nav-link" href="{{route('cajas.index')}}">Listado</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{route('cajas.create')}}">Registrar Camara</a>
+                <a class="nav-link active" href="{{route('cajas.create')}}">Registrar Cajon</a>
             </li>
         </ul>
         

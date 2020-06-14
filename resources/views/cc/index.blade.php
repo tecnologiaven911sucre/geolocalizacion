@@ -17,10 +17,10 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link active" href="{{route('estados.index')}}">Listado</a>
+                <a class="nav-link active" href="{{route('centrodecomando.index')}}">Listado</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('estados.create')}}">Registrar centro de comando</a>
+                <a class="nav-link" href="{{route('centrodecomando.create')}}">Registrar centro de comando</a>
             </li>
         </ul>
         <div class="btn-toolbar mb-2 mb-md-0">

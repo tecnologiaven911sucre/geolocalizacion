@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Carbon\Carbon;
 
 class CcommandController extends Controller
 {
@@ -37,9 +38,15 @@ class CcommandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('ccommand')->insert([
+            "state" => $request->input('cc'),
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()  
+            ]);
+            
+            return redirect()->route('centrodecomando.index')->with('info','Se ha ingresado el centro de comando correctamente');
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -50,7 +57,7 @@ class CcommandController extends Controller
     {
         //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -59,9 +66,11 @@ class CcommandController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cc = DB::table('ccommand')->where('id',$id)->first();
+        
+        return view('cc.edit', compact('cc'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -71,7 +80,12 @@ class CcommandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('ccommand')->where('id',$id)->update([
+            "state" => $request->input('cc'),
+            "updated_at" => Carbon::now()  
+        ]);
+
+        return redirect()->route('centrodecomando.index')->with('info','Se actualizaron los datos en correctamente');
     }
 
     /**
@@ -82,6 +96,8 @@ class CcommandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('ccommand')->where('id',$id)->delete();
+
+        return redirect()->route('centrodecomando.index')->with('Se eliminaron los datos correctamente');
     }
 }
