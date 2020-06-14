@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use Carbon\Carbon;
+use App\Http\Requests\CreateStatusRequest;
 
-class DrawersController extends Controller
+class StatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,10 +16,9 @@ class DrawersController extends Controller
      */
     public function index()
     {
-        
-       $drawers = DB::table('drawers')->get();
+        $status = DB::table('status')->get();
 
-       return view('drawers.index',compact('drawers'));
+        return view('status.index',compact('status'));
     }
 
     /**
@@ -26,7 +28,7 @@ class DrawersController extends Controller
      */
     public function create()
     {
-        return view('drawers.create');
+        return view('status.create');
     }
 
     /**
@@ -35,9 +37,15 @@ class DrawersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateStatusRequest $request)
     {
-        //
+        DB::table('status')->insert([
+            "operability" => $request->input('operability'),
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        return redirect()->route('estados.index')->with('info','Se ingresaron nuevos estados');
     }
 
     /**
@@ -59,7 +67,8 @@ class DrawersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $status = DB::table('status')->where('id',$id)->first();
+        return view('status.edit', compact('status'));
     }
 
     /**
@@ -71,7 +80,12 @@ class DrawersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('status')->where('id',$id)->update([
+            "operability" => $request->input('operability'),
+            "updated_at" => Carbon::now()
+        ]);
+
+        return redirect()->route('estados.index')->with('info','Se actualizaron los datos correctamente');
     }
 
     /**
@@ -82,6 +96,8 @@ class DrawersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('status')->where('id',$id)->delete();
+
+        return redirect()->route('estados.index')->with('info','Se elimino el estado correctamente');
     }
 }

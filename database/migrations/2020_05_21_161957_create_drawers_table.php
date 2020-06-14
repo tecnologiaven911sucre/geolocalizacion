@@ -18,13 +18,13 @@ class CreateDrawersTable extends Migration
             $table->string('code')->unique();
             $table->string('serial_t_lindus')->unique();
             $table->string('ip_t_lindus')->unique();
-            $table->string('command_center')->nullable();
+            $table->string('command_center_id');
             $table->string('review')->nullable();
             $table->string('order')->nullable();
             $table->string('circuit')->nullable();
             $table->string('location')->nullable();
             $table->string('vlan')->nullable();
-            $table->string('state')->nullable();
+            $table->string('status_id');
             $table->timestamps();
         });
     }

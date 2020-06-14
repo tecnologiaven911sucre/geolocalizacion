@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
-class DrawersController extends Controller
+class CcommandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,10 +14,9 @@ class DrawersController extends Controller
      */
     public function index()
     {
-        
-       $drawers = DB::table('drawers')->get();
+        $cc = DB::table('ccommand')->get();
 
-       return view('drawers.index',compact('drawers'));
+        return view('cc.index',compact('cc'));
     }
 
     /**
@@ -26,7 +26,7 @@ class DrawersController extends Controller
      */
     public function create()
     {
-        return view('drawers.create');
+        return view('cc.create');
     }
 
     /**

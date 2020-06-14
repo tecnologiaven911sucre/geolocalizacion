@@ -88,6 +88,7 @@
                               <div class="list-group ">
                                   <a href="{{url('/')}}" class="list-group-item list-group-item-action list-group-item-success {{activeMenu('/')}}">inicio</a>
                               <a href="{{ route('camaras.create')}}" class="list-group-item list-group-item-action list-group-item-success {{activeMenu('camaras/create')}}">Camaras Ven9-1-1</a>
+                              <a href="{{ route('estados.create')}}" class="list-group-item list-group-item-action list-group-item-success {{activeMenu('estados/create')}}">Estados</a>
                                 <a href="#" class="list-group-item list-group-item-action list-group-item-success">COVID-19</a>
                                 <a href="#" class="list-group-item list-group-item-action list-group-item-success">Opciones</a>
                                 @if(auth()->user()->hasRoles(["admin"]))
