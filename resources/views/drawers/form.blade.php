@@ -16,9 +16,13 @@
         <input type="text" class="form-control" id="ip_t_lindus" name="ip_t_lindus" placeholder="Ingrese el IP del t-lindus" value="{{old('ip_t_lindus')}}">{{$errors->first('ip_t_lindus')}}
         </div>
         <div class="form-group">
-            <label for="commad_center">Centro de Comando:
+            <label for="command_center">Centro de Comando:
             </label>
-        <input type="text" class="form-control" id="commad_center" name="commad_center" placeholder="Ingrese el centro de comando" value="{{old('commad_center')}}">{{$errors->first('commad_center')}}
+        <select class="form-control form-control-sm" id="command_center" name="command_center">
+            @foreach ($status as $stt)
+        <option value="{{$stt->id}}">{{$stt->state}}</option>
+            @endforeach
+          </select>
         </div>
         <div class="form-group">
             <label for="order">Orden:

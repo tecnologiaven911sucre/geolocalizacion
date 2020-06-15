@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Status;
 
 class DrawersController extends Controller
 {
@@ -27,7 +28,9 @@ class DrawersController extends Controller
      */
     public function create()
     {
-        return view('drawers.create');
+        $status = Status::pluck('operability','id');
+        
+        return view('drawers.create',compact('status'));
     }
 
     /**
