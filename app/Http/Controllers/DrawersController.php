@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Drawer;
 use App\Status;
+use App\Command;
+use Carbon\Carbon;
 
 class DrawersController extends Controller
 {
@@ -16,7 +19,7 @@ class DrawersController extends Controller
     public function index()
     {
         
-       $drawers = DB::table('drawers')->get();
+       $drawers = Drawer::with(['statuses','commands'])->get();
 
        return view('drawers.index',compact('drawers'));
     }
@@ -28,9 +31,10 @@ class DrawersController extends Controller
      */
     public function create()
     {
-        $status = Status::pluck('operability','id');
-        
-        return view('drawers.create',compact('status'));
+        $status = Status::all();
+        $command = Command::all();
+
+        return view('drawers.create',compact('status','command'));
     }
 
     /**
@@ -41,7 +45,25 @@ class DrawersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // dd($request->all());
+
+
+        DB::table('drawers')->insert([
+            "code" => $request->input('code'),
+            "serial_t_lindus" => $request->input('serial_t_lindus'),
+            "ip_t_lindus" => $request->input('ip_t_lindus'),
+            "command_center_id" => $request->input('command_center'),
+            "order" => $request->input('order'),
+            "circuit" => $request->input('circuit'),
+            "location" => $request->input('location'),
+            "vlan" => $request->input('status'),
+            "status_id" => $request->input('ip_t_lindus'),
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        return redirect()->route('cajas.index')->with('info','Se agregaron los datos correctamente');
     }
 
     /**

@@ -15,7 +15,7 @@ class CcommandController extends Controller
      */
     public function index()
     {
-        $cc = DB::table('ccommand')->get();
+        $cc = DB::table('commands')->get();
 
         return view('cc.index',compact('cc'));
     }
@@ -38,7 +38,7 @@ class CcommandController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('ccommand')->insert([
+        DB::table('commands')->insert([
             "state" => $request->input('cc'),
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()  
@@ -66,7 +66,7 @@ class CcommandController extends Controller
      */
     public function edit($id)
     {
-        $cc = DB::table('ccommand')->where('id',$id)->first();
+        $cc = DB::table('commands')->where('id',$id)->first();
         
         return view('cc.edit', compact('cc'));
     }
@@ -80,7 +80,7 @@ class CcommandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        DB::table('ccommand')->where('id',$id)->update([
+        DB::table('commands')->where('id',$id)->update([
             "state" => $request->input('cc'),
             "updated_at" => Carbon::now()  
         ]);
@@ -96,7 +96,7 @@ class CcommandController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('ccommand')->where('id',$id)->delete();
+        DB::table('commands')->where('id',$id)->delete();
 
         return redirect()->route('centrodecomando.index')->with('Se eliminaron los datos correctamente');
     }

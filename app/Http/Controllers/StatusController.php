@@ -16,7 +16,7 @@ class StatusController extends Controller
      */
     public function index()
     {
-        $status = DB::table('status')->get();
+        $status = DB::table('statuses')->get();
 
         return view('status.index',compact('status'));
     }
@@ -39,7 +39,7 @@ class StatusController extends Controller
      */
     public function store(CreateStatusRequest $request)
     {
-        DB::table('status')->insert([
+        DB::table('statuses')->insert([
             "operability" => $request->input('operability'),
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
@@ -67,7 +67,7 @@ class StatusController extends Controller
      */
     public function edit($id)
     {
-        $status = DB::table('status')->where('id',$id)->first();
+        $status = DB::table('statuses')->where('id',$id)->first();
         return view('status.edit', compact('status'));
     }
 
@@ -80,7 +80,7 @@ class StatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        DB::table('status')->where('id',$id)->update([
+        DB::table('statuses')->where('id',$id)->update([
             "operability" => $request->input('operability'),
             "updated_at" => Carbon::now()
         ]);
@@ -96,7 +96,7 @@ class StatusController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('status')->where('id',$id)->delete();
+        DB::table('statuses')->where('id',$id)->delete();
 
         return redirect()->route('estados.index')->with('info','Se elimino el estado correctamente');
     }
