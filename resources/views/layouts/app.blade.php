@@ -86,12 +86,15 @@
                         <nav class="col-md-3 d-none d-md-block navbar-dark bg-light sidebar">
                             <div class="sidebar-sticky">
                               <div class="list-group ">
-                                  <a href="{{url('/')}}" class="list-group-item list-group-item-action list-group-item-success {{activeMenu('/')}}">inicio</a>
-                              <a href="{{ route('camaras.create')}}" class="list-group-item list-group-item-action list-group-item-success {{activeMenu('camaras/create')}}">Camaras Ven9-1-1</a>
-                                <a href="#" class="list-group-item list-group-item-action list-group-item-success">COVID-19</a>
-                                <a href="#" class="list-group-item list-group-item-action list-group-item-success">Opciones</a>
+                                  <a href="{{url('/')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('/')}}">inicio</a>
+                              <a href="{{ route('camaras.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('camaras')}}">Camaras Ven9-1-1</a>
+                              <a href="{{ route('cajas.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('cajas')}}">Cajas </a>
+                              <a href="{{ route('estados.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('estados')}}">Estados</a>
+                              <a href="{{ route('centrodecomando.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('centrodecomando')}}">Centro de comando</a>
+                                <a href="#" class="list-group-item list-group-item-action list-group-item-primary">COVID-19</a>
+                                <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Opciones</a>
                                 @if(auth()->user()->hasRoles(["admin"]))
-                                <a href="{{ route('usuarios.index')}}" class="list-group-item list-group-item-action list-group-item-success {{activeMenu('usuarios')}} ">Usuarios</a>
+                                <a href="{{ route('usuarios.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('usuarios')}} ">Usuarios</a>
                                 @endif
 
                               </div>
