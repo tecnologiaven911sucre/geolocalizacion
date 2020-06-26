@@ -15,6 +15,16 @@ class CreateDrawersTable extends Migration
     {
         Schema::create('drawers', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->unique();
+            $table->string('serial_t_lindus')->unique();
+            $table->string('ip_t_lindus')->unique();
+            $table->string('review')->nullable();
+            $table->string('order')->nullable();
+            $table->string('circuit')->nullable();
+            $table->string('location')->nullable();
+            $table->string('vlan')->nullable();
+            $table->string('command_id')->unsigned();
+            $table->string('status_id')->unsigned();
             $table->timestamps();
         });
     }
