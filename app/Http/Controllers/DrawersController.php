@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+
 
 class DrawersController extends Controller
 {
@@ -13,7 +15,10 @@ class DrawersController extends Controller
      */
     public function index()
     {
-        //
+        
+       $drawers = DB::table('drawers')->get();
+
+       return view('drawers.index',compact('drawers'));
     }
 
     /**
@@ -23,7 +28,10 @@ class DrawersController extends Controller
      */
     public function create()
     {
-        //
+        $status = Operability::all();
+        $command = Command::all();
+
+        return view('drawers.create',compact('status','command'));
     }
 
     /**
@@ -34,7 +42,24 @@ class DrawersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // dd($request->all());
+
+        DB::table('drawers')->insert([
+            "code" => $request->input('code'),
+            "serial_t_lindus" => $request->input('serial_t_lindus'),
+            "ip_t_lindus" => $request->input('ip_t_lindus'),
+            "order" => $request->input('order'),
+            "circuit" => $request->input('circuit'),
+            "location" => $request->input('location'),
+            "vlan" => $request->input('vlan'),
+            "command_id" => $request->input('command_id'),
+            "operability_id" => $request->input('status'),
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        return redirect()->route('cajas.index')->with('info','Se agregaron los datos correctamente');
     }
 
     /**
