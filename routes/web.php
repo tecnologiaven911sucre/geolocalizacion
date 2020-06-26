@@ -28,5 +28,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/camaras','CamerasController');
 Route::resource('/usuarios','UsersController');
 Route::resource('/cajas','DrawersController');
-Route::resource('/estados','DrawersController');
-Route::resource('/centrodecomando','DrawersController');
+Route::resource('/estados','OperabilitiesController');
+Route::resource('/centrodecomando','CommandsController');

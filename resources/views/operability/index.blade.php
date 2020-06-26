@@ -31,9 +31,9 @@
       @if(session()->has('info'))
             <h3>{{ session('info') }}</h3>
       @endif
-       <form action="{{route('centrodecomando.update',$cc->id)}}" method="POST">
+       <form action="{{route('centrodecomando.update',$status->id)}}" method="POST">
         @method('put')
-        @include('cc.form',['btnText' => 'Actualizar'])
+        @include('status.form',['btnText' => 'Actualizar'])
     </form>
         </div>
     </div>
