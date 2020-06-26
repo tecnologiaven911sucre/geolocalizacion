@@ -31,9 +31,9 @@
       @if(session()->has('info'))
             <h3>{{ session('info') }}</h3>
       @endif
-       <form action="{{route('estados.update'),$status->id}}" method="POST">
+       <form action="{{route('estados.update',$status->id)}}" method="POST">
         @method('put')
-        @include('status.form',['btnText' => 'Actualizar'])
+        @include('operability.form',['btnText' => 'Actualizar'])
     </form>
         </div>
     </div>

@@ -33,7 +33,6 @@
       @endif
        <form action="/estados" method="POST">
         @include('operability.form')
-        {{-- @include('drawers.form',['btnText' => 'Actualizar']) --}}
     </form>
         </div>
     </div>

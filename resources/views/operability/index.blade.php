@@ -44,7 +44,7 @@
           <tbody>
                 @foreach ($status as $stt)
                         <tr>
-                        <td>{{$stt->operability }}</td>
+                        <td>{{$stt->name }}</td>
                         <td>
                             <a href="{{route('estados.edit',$stt->id)}}">Editar</a>
                             <form style="display: inline" action="{{route('estados.destroy',$stt->id)}}" method="POST">

@@ -20,10 +20,10 @@
             </label>
         <select class="form-control form-control-sm" id="command_center" name="command_center">
             @foreach ($status as $ope)
-                <option value="{{$ope->id}}">{{$ope->operability}}</option>
+                <option value="{{$ope->id}}">{{$ope->name}}</option>
             @endforeach
         </select>
-    </div>
+    </div>{{$errors->first('$status')}}
     <div class="form-group">
         <label for="order">Orden:
         </label>

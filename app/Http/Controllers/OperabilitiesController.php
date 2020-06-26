@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Carbon\Carbon;
-use App\Http\Request\CreateOperabilityRequest;
+use App\Http\Requests\CreateOperabilityRequest;
 
 class OperabilitiesController extends Controller
 {
@@ -38,9 +38,10 @@ class OperabilitiesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(CreateOperabilityRequest $request)
-    {
+    {   
+        // dd($request->all());
         DB::table('operabilities')->insert([
-            "name" => $request->input('operability'),
+            "name" => $request->input('name'),
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
         ]);
@@ -79,9 +80,10 @@ class OperabilitiesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
+        // dd($request->all());
         DB::table('operabilities')->where('id',$id)->update([
-            "name" => $request->input('operability'),
+            "name" => $request->input('name'),
             "updated_at" => Carbon::now()
         ]);
 

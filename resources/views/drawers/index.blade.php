@@ -61,7 +61,7 @@
                             <td>{{$drawer->circuit }}</td>
                             <td>{{$drawer->location }}</td>
                             <td>{{$drawer->vlan }}</td>
-                            <td>{{$status->operability}}</td>
+                            <td>{{$status->name}}</td>
                             <td>
                             </td>
                         <td>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-
+use App\Operability;
+use App\Command;
+use App\Http\Requests\CreateDrawersRequest;
 
 class DrawersController extends Controller
 {
@@ -40,10 +42,10 @@ class DrawersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateDrawersRequest $request)
     {
 
-        // dd($request->all());
+        dd($request->all());
 
         DB::table('drawers')->insert([
             "code" => $request->input('code'),
