@@ -30,9 +30,9 @@ class CreateDrawersRequest extends FormRequest
             'order' => 'required|alpha_num',
             'circuit' => 'required|numeric',
             'location' => 'required',
-            'vlan' => 'required|numeric',
-            'command_id' => 'required',
-            'operability_id' => 'required'
+            'vlan' => 'required|numeric'
+            // 'command_id' => 'required',
+            // 'operability_id' => 'required'
         ];
     }
 }

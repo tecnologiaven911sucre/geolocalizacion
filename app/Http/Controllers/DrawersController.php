@@ -46,7 +46,7 @@ class DrawersController extends Controller
     public function store(CreateDrawersRequest $request)
     {
 
-        dd($request->all());
+        // dd($request->all());
 
         DB::table('drawers')->insert([
             "code" => $request->input('code'),

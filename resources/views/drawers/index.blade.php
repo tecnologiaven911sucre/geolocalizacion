@@ -54,7 +54,7 @@
                         <tr>
                         <td><a href="{{route('cajas.show',$drawer->id) }}">{{$drawer->code }}</a></td>
                             <td>{{$drawer->serial_t_lindus }}</td>
-                            <td>{{dd($drawer->all())}}</td>
+                            <td>{{$drawer->centrodecomando}}</td>
                             <td>{{$drawer->ip_t_lindus }}</td>
                             <td>{{$drawer->state }}</td>
                             <td>{{$drawer->order }}</td>
