@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Carbon\Carbon;
+use App\Http\Request\CreateOperabilityRequest;
 
 class OperabilitiesController extends Controller
 {
@@ -36,7 +37,7 @@ class OperabilitiesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateStatusRequest $request)
+    public function store(CreateOperabilityRequest $request)
     {
         DB::table('operabilities')->insert([
             "name" => $request->input('operability'),
