@@ -7,6 +7,7 @@ use DB;
 use App\Operability;
 use App\Command;
 use App\Http\Requests\CreateDrawersRequest;
+use Carbon\Carbon;
 
 class DrawersController extends Controller
 {
@@ -32,7 +33,7 @@ class DrawersController extends Controller
     {
         $status = Operability::all();
         $command = Command::all();
-
+        
         return view('drawers.create',compact('status','command'));
     }
 
@@ -55,7 +56,7 @@ class DrawersController extends Controller
             "circuit" => $request->input('circuit'),
             "location" => $request->input('location'),
             "vlan" => $request->input('vlan'),
-            "command_id" => $request->input('command_id'),
+            "command_id" => $request->input('command_center'),
             "operability_id" => $request->input('status'),
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()

@@ -24,16 +24,15 @@ class CreateDrawersRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            "code" => 'required|alpha_num',
-            "serial_t_lindus" => 'required|numeric',
-            "ip_t_lindus" => 'required|ip',
-            "order" => 'required|alpha_num',
-            "circuit" => 'required|numeric',
-            "location" => 'required',
-            "vlan" => 'required|numeric',
-            "command_id" => 'required',
-            "operability_id" => 'required'
+            'code' => 'required|alpha_num',
+            'serial_t_lindus' => 'required|numeric',
+            'ip_t_lindus' => 'required|ip',
+            'order' => 'required|alpha_num',
+            'circuit' => 'required|numeric',
+            'location' => 'required',
+            'vlan' => 'required|numeric',
+            'command_id' => 'required',
+            'operability_id' => 'required'
         ];
     }
 }
