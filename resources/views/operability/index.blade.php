@@ -15,27 +15,55 @@
 
             <!-- botones y lineas antes de la contenido principal -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        {{-- <h1 class="h2">Crear camara</h1> --}}
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" href="{{route('estados.index')}}">Listado de estatus</a>
+                <a class="nav-link active" href="{{route('estados.index')}}">Listado de estatus</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{route('estados.create')}}">Registrar estatus</a>
+                <a class="nav-link" href="{{route('estados.create')}}">Registrar estatus</a>
             </li>
         </ul>
-        
-    </div>
+        <div class="btn-toolbar mb-2 mb-md-0">
+         
+        </div>
+
+      </div>
+      
        <!-- fin botones y lineas antes de la contenido principal -->
-       
       @if(session()->has('info'))
-            <h3>{{ session('info') }}</h3>
+            <div class="alert alert-success">{{ session('info') }}</div>
       @endif
-       <form action="{{route('centrodecomando.update',$status->id)}}" method="POST">
-        @method('put')
-        @include('status.form',['btnText' => 'Actualizar'])
-    </form>
+      
+      <table class="table">
+          <thead>
+              <tr>
+                  <th>Estado</th>
+                  <th>Accion</th>
+              </tr>
+          </thead>
+          <tbody>
+                @foreach ($status as $stt)
+                        <tr>
+                        <td>{{$stt->operability }}</td>
+                        <td>
+                            <a href="{{route('estados.edit',$stt->id)}}">Editar</a>
+                            <form style="display: inline" action="{{route('estados.destroy',$stt->id)}}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                            </form>
+                        </td>
+                        </tr>
+                @endforeach
+          </tbody>
+      </table>
+
+
+
+
+      
         </div>
     </div>
 </div>
+    
 @endsection
