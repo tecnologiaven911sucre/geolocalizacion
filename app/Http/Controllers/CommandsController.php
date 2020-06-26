@@ -13,7 +13,9 @@ class CommandsController extends Controller
      */
     public function index()
     {
-        //
+        $cc = DB::table('commands')->get();
+
+        return view('cc.index',compact('cc'));
     }
 
     /**
@@ -23,7 +25,7 @@ class CommandsController extends Controller
      */
     public function create()
     {
-        //
+        return view('cc.create');
     }
 
     /**
@@ -34,9 +36,15 @@ class CommandsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('commands')->insert([
+            "state" => $request->input('cc'),
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()  
+            ]);
+            
+            return redirect()->route('centrodecomando.index')->with('info','Se ha ingresado el centro de comando correctamente');
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -47,7 +55,7 @@ class CommandsController extends Controller
     {
         //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -56,9 +64,11 @@ class CommandsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cc = DB::table('commands')->where('id',$id)->first();
+        
+        return view('cc.edit', compact('cc'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -68,7 +78,12 @@ class CommandsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('commands')->where('id',$id)->update([
+            "state" => $request->input('cc'),
+            "updated_at" => Carbon::now()  
+        ]);
+
+        return redirect()->route('centrodecomando.index')->with('info','Se actualizaron los datos en correctamente');
     }
 
     /**
@@ -79,6 +94,8 @@ class CommandsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('commands')->where('id',$id)->delete();
+
+        return redirect()->route('centrodecomando.index')->with('Se eliminaron los datos correctamente');
     }
 }

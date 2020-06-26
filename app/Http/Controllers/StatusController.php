@@ -5,19 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Carbon\Carbon;
+use App\Http\Requests\CreateStatusRequest;
 
-class OperabilitiesController extends Controller
+class StatusController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $status = DB::table('operabilities')->get();
+        $status = DB::table('statuses')->get();
 
-        return view('operability.index',compact('status'));
+        return view('status.index',compact('status'));
     }
 
     /**
@@ -27,7 +28,7 @@ class OperabilitiesController extends Controller
      */
     public function create()
     {
-        return view('operability.create');
+        return view('status.create');
     }
 
     /**
@@ -38,8 +39,8 @@ class OperabilitiesController extends Controller
      */
     public function store(CreateStatusRequest $request)
     {
-        DB::table('operabilities')->insert([
-            "name" => $request->input('operability'),
+        DB::table('statuses')->insert([
+            "operability" => $request->input('operability'),
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
         ]);
@@ -66,8 +67,8 @@ class OperabilitiesController extends Controller
      */
     public function edit($id)
     {
-        $status = DB::table('operabilities')->where('id',$id)->first();
-        return view('operability.edit', compact('status'));
+        $status = DB::table('statuses')->where('id',$id)->first();
+        return view('status.edit', compact('status'));
     }
 
     /**
@@ -79,8 +80,8 @@ class OperabilitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        DB::table('operabilities')->where('id',$id)->update([
-            "name" => $request->input('operability'),
+        DB::table('statuses')->where('id',$id)->update([
+            "operability" => $request->input('operability'),
             "updated_at" => Carbon::now()
         ]);
 
@@ -95,7 +96,7 @@ class OperabilitiesController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('operabilities')->where('id',$id)->delete();
+        DB::table('statuses')->where('id',$id)->delete();
 
         return redirect()->route('estados.index')->with('info','Se elimino el estado correctamente');
     }
