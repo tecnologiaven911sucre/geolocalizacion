@@ -19,7 +19,7 @@ class DrawersController extends Controller
     public function index()
     {
         
-       $drawers = Drawer::with(['statuses','commands'])->get();
+       $drawers =DB::table('drawers')->get();
 
        return view('drawers.index',compact('drawers'));
     }
