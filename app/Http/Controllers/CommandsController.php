@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use App\Operability;
-use App\Command;
-use App\Http\Requests\CreateDrawersRequest;
 use Carbon\Carbon;
 
-class DrawersController extends Controller
+
+class CommandsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +16,9 @@ class DrawersController extends Controller
      */
     public function index()
     {
-        
-       $drawers = DB::table('drawers')->get();
+        $cc = DB::table('commands')->get();
 
-       return view('drawers.index',compact('drawers'));
+        return view('cc.index',compact('cc'));
     }
 
     /**
@@ -31,10 +28,7 @@ class DrawersController extends Controller
      */
     public function create()
     {
-        $status = Operability::all();
-        $command = Command::all();
-        
-        return view('drawers.create',compact('status','command'));
+        return view('cc.create');
     }
 
     /**
@@ -43,28 +37,17 @@ class DrawersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateDrawersRequest $request)
+    public function store(Request $request)
     {
-
-        // dd($request->all());
-
-        DB::table('drawers')->insert([
-            "code" => $request->input('code'),
-            "serial_t_lindus" => $request->input('serial_t_lindus'),
-            "ip_t_lindus" => $request->input('ip_t_lindus'),
-            "order" => $request->input('order'),
-            "circuit" => $request->input('circuit'),
-            "location" => $request->input('location'),
-            "vlan" => $request->input('vlan'),
-            "command_id" => $request->input('command_center'),
-            "operability_id" => $request->input('status'),
+        DB::table('commands')->insert([
+            "state" => $request->input('cc'),
             "created_at" => Carbon::now(),
-            "updated_at" => Carbon::now()
-        ]);
-
-        return redirect()->route('cajas.index')->with('info','Se agregaron los datos correctamente');
+            "updated_at" => Carbon::now()  
+            ]);
+            
+            return redirect()->route('centrodecomando.index')->with('info','Se ha ingresado el centro de comando correctamente');
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -75,7 +58,7 @@ class DrawersController extends Controller
     {
         //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -84,9 +67,11 @@ class DrawersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cc = DB::table('commands')->where('id',$id)->first();
+        
+        return view('cc.edit', compact('cc'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -96,7 +81,12 @@ class DrawersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('commands')->where('id',$id)->update([
+            "state" => $request->input('cc'),
+            "updated_at" => Carbon::now()  
+        ]);
+
+        return redirect()->route('centrodecomando.index')->with('info','Se actualizaron los datos en correctamente');
     }
 
     /**
@@ -107,6 +97,8 @@ class DrawersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('commands')->where('id',$id)->delete();
+
+        return redirect()->route('centrodecomando.index')->with('Se eliminaron los datos correctamente');
     }
 }

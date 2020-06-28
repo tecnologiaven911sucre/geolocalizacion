@@ -1,4 +1,4 @@
-<!doctype html>
+    <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -87,7 +87,7 @@
                             <div class="sidebar-sticky">
                               <div class="list-group ">
                                   <a href="{{url('/')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('/')}}">inicio</a>
-                              <a href="{{ route('camaras.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('camaras')}}">Camaras Ven9-1-1</a>
+                              <!-- <a href="{{ route('camaras.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('camaras')}}">Camaras Ven9-1-1</a> -->
                               <a href="{{ route('cajas.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('cajas')}}">Cajas </a>
                               <a href="{{ route('estados.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('estados')}}">Estados</a>
                               <a href="{{ route('centrodecomando.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('centrodecomando')}}">Centro de comando</a>

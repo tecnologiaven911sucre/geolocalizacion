@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Command extends Model
+class Operability extends Model
 {
     public function drawer(){
-        return $this->hasMany(Drawer::class);
+        return $this->hasOne('App\Drawer');
     }
 }

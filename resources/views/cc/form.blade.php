@@ -2,7 +2,7 @@
         <div class="form-group">
             <label for="cc">Centro de comando:
             </label>
-        <input type="text" class="form-control" id="cc" name="cc" placeholder="Ingrese el centro de comando" value="{{ isset($cc) ? $cc->state : old('cc') }}">
+        <input type="text" class="form-control" id="cc" name="cc" placeholder="Ingrese el centro de comando" value="{{ isset($cc) ? $cc->name : old('cc') }}">
         {{$errors->first('cc')}}
         </div>
         

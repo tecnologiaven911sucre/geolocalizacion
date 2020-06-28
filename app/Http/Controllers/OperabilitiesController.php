@@ -4,24 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use App\Operability;
-use App\Command;
-use App\Http\Requests\CreateDrawersRequest;
 use Carbon\Carbon;
+use App\Http\Requests\CreateOperabilityRequest;
 
-class DrawersController extends Controller
+class OperabilitiesController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        
-       $drawers = DB::table('drawers')->get();
+        $status = DB::table('operabilities')->get();
 
-       return view('drawers.index',compact('drawers'));
+        return view('operability.index',compact('status'));
     }
 
     /**
@@ -31,10 +28,7 @@ class DrawersController extends Controller
      */
     public function create()
     {
-        $status = Operability::all();
-        $command = Command::all();
-        
-        return view('drawers.create',compact('status','command'));
+        return view('operability.create');
     }
 
     /**
@@ -43,26 +37,16 @@ class DrawersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateDrawersRequest $request)
-    {
-
+    public function store(CreateOperabilityRequest $request)
+    {   
         // dd($request->all());
-
-        DB::table('drawers')->insert([
-            "code" => $request->input('code'),
-            "serial_t_lindus" => $request->input('serial_t_lindus'),
-            "ip_t_lindus" => $request->input('ip_t_lindus'),
-            "order" => $request->input('order'),
-            "circuit" => $request->input('circuit'),
-            "location" => $request->input('location'),
-            "vlan" => $request->input('vlan'),
-            "command_id" => $request->input('command_center'),
-            "operability_id" => $request->input('status'),
+        DB::table('operabilities')->insert([
+            "name" => $request->input('name'),
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
         ]);
 
-        return redirect()->route('cajas.index')->with('info','Se agregaron los datos correctamente');
+        return redirect()->route('estados.index')->with('info','Se ingresaron nuevos estados');
     }
 
     /**
@@ -84,7 +68,8 @@ class DrawersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $status = DB::table('operabilities')->where('id',$id)->first();
+        return view('operability.edit', compact('status'));
     }
 
     /**
@@ -95,8 +80,14 @@ class DrawersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        // dd($request->all());
+        DB::table('operabilities')->where('id',$id)->update([
+            "name" => $request->input('name'),
+            "updated_at" => Carbon::now()
+        ]);
+
+        return redirect()->route('estados.index')->with('info','Se actualizaron los datos correctamente');
     }
 
     /**
@@ -107,6 +98,8 @@ class DrawersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('operabilities')->where('id',$id)->delete();
+
+        return redirect()->route('estados.index')->with('info','Se elimino el estado correctamente');
     }
 }

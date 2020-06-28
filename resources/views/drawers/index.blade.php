@@ -54,14 +54,14 @@
                         <tr>
                         <td><a href="{{route('cajas.show',$drawer->id) }}">{{$drawer->code }}</a></td>
                             <td>{{$drawer->serial_t_lindus }}</td>
-                            <td>{{dd($drawer)}}</td>
+                            <td>{{$drawer->centrodecomando}}</td>
                             <td>{{$drawer->ip_t_lindus }}</td>
                             <td>{{$drawer->state }}</td>
                             <td>{{$drawer->order }}</td>
                             <td>{{$drawer->circuit }}</td>
                             <td>{{$drawer->location }}</td>
                             <td>{{$drawer->vlan }}</td>
-                            <td>{{$status->operability}}</td>
+                            <td>{{$status->name}}</td>
                             <td>
                             </td>
                         <td>
