@@ -38,14 +38,10 @@
           <thead>
               <tr>
                   <th>Codigo</th>
-                  <th>Serial del t-lindus</th>
                   <th>IP del t-lindus</th>
-                  <th>Centro de comando</th>
                   <th>Orden</th>
-                  <th>Circuito</th>
-                  <th>Ubicacion</th>
-                  <th>VLAN</th>
-                  <th>Estado</th>
+                  <th>Centro de comando</th>
+                  <th>operatividad</th>
                   <th>Acciones</th>
               </tr>
           </thead>
@@ -53,17 +49,11 @@
                 @foreach ($drawers as $drawer)
                         <tr>
                         <td><a href="{{route('cajas.show',$drawer->id) }}">{{$drawer->code }}</a></td>
-                            <td>{{$drawer->serial_t_lindus }}</td>
-                            <td>{{$drawer->centrodecomando}}</td>
                             <td>{{$drawer->ip_t_lindus }}</td>
-                            <td>{{$drawer->state }}</td>
                             <td>{{$drawer->order }}</td>
-                            <td>{{$drawer->circuit }}</td>
-                            <td>{{$drawer->location }}</td>
-                            <td>{{$drawer->vlan }}</td>
-                            <td>{{$status->name}}</td>
-                            <td>
-                            </td>
+                            <td>{{$drawer->command->state}}</td>
+                            <td>{{$drawer->operability->name}}</td>
+                           
                         <td>
                             <a href="{{route('cajas.edit',$drawer->id)}}">Editar</a>
                             <form style="display: inline" action="{{route('cajas.destroy',$drawer->id)}}" method="POST">

@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Command extends Model
 {
     public function drawer(){
-        return $this->hasMany(Drawer::class);
+        return $this->hasOne(Drawer::class);
     }
 }

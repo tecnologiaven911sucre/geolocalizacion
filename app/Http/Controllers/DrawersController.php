@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Operability;
 use App\Command;
+use App\Drawer;
 use App\Http\Requests\CreateDrawersRequest;
 use Carbon\Carbon;
 
@@ -19,7 +20,7 @@ class DrawersController extends Controller
     public function index()
     {
         
-       $drawers = DB::table('drawers')->get();
+       $drawers = \App\Drawer::all();
 
        return view('drawers.index',compact('drawers'));
     }
@@ -73,7 +74,8 @@ class DrawersController extends Controller
      */
     public function show($id)
     {
-        //
+        $drawers = Drawer::findOrFail($id);
+        return view('drawers.show', compact('drawers'));
     }
 
     /**
