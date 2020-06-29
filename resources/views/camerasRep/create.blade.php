@@ -32,32 +32,7 @@
             <h3>{{ session('info') }}</h3>
       @endif
        <form action="/camaras" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="ip">Direccion IP:
-            </label>
-        <input type="text" class="form-control" id="ip" name="ip" placeholder="Ingrese la direccion IP" value="{{old('ip')}}">
-        {{$errors->first('ip')}}
-        </div>
-        <div class="form-group">
-            <label for="serial">Serial:
-            </label>
-        <input type="text" class="form-control" id="serial" name="serial" placeholder="Ingrese el serial" value="{{old('serial')}}">{{$errors->first('serial')}}
-        </div>
-        <div class="form-group">
-            <label for="codigo">Codigo:
-            </label>
-        <input type="text" class="form-control" id="codigo" name="codigo" placeholder="Ingrese el codigo" value="{{old('codigo')}}">
-        </div>{{$errors->first('codigo')}}
-        <div class="form-group">
-            <label for="estado">Estado:</label>
-            <select class="form-control" id="estado" name="estado">
-              <option value="1">Operativa</option>
-              <option value="0">Inoperativa</option>
-            </select>
-            {{$errors->first('estado')}}
-        </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        @include('camerasRep.form')
     </form>
         </div>
     </div>

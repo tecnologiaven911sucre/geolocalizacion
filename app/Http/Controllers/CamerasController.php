@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateCameraRequest;
 use DB;
 use Carbon\Carbon;
+use App\Operability;
+use App\Drawer;
 
 class CamerasController extends Controller
 {
@@ -27,8 +29,10 @@ class CamerasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('camerasRep.create');
+    {   
+        $status = Operability::all();
+        $drawers = Drawer::all();
+        return view('camerasRep.create',compact('status','drawers'));
     }
 
     /**

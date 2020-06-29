@@ -12,4 +12,7 @@ class Drawer extends Model
     public function operability(){
         return $this->belongsTo(Operability::class);
     }
+    public function cameras(){
+        return $this->hasMany(Camera::class);
+    }
 }
