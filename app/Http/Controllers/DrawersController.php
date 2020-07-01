@@ -9,6 +9,7 @@ use App\Command;
 use App\Drawer;
 use App\Http\Requests\CreateDrawersRequest;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class DrawersController extends Controller
 {
@@ -46,9 +47,13 @@ class DrawersController extends Controller
      */
     public function store(CreateDrawersRequest $request)
     {
+        $img = '';
+        if($request->hasFile('photo')){
 
-        // dd($request->all());
+            $img = $request->file('photo')->store('uploads','public');
 
+        }
+        
         DB::table('drawers')->insert([
             "code" => $request->input('code'),
             "serial_t_lindus" => $request->input('serial_t_lindus'),
@@ -57,16 +62,19 @@ class DrawersController extends Controller
             "circuit" => $request->input('circuit'),
             "location" => $request->input('location'),
             "vlan" => $request->input('vlan'),
+            "photo" => $img,
+            "latitude" => $request->input('latitude'),
+            "length" => $request->input('length'),
             "command_id" => $request->input('command_center'),
             "operability_id" => $request->input('status'),
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
-        ]);
+            ]);
+            
+            return redirect()->route('cajas.index')->with('info','Se agregaron los datos correctamente');
+        }
 
-        return redirect()->route('cajas.index')->with('info','Se agregaron los datos correctamente');
-    }
-
-    /**
+        /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -77,7 +85,7 @@ class DrawersController extends Controller
         $drawers = Drawer::findOrFail($id);
         return view('drawers.show', compact('drawers'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -85,10 +93,13 @@ class DrawersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $status = Operability::all();
+        $command = Command::all();
+        $drawers = Drawer::findOrFail($id);
+        return view('drawers.edit', compact('drawers','status','command'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -98,9 +109,36 @@ class DrawersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        
+        $img = '';
+        if($request->hasFile('photo')){
+            $drawers = Drawer::findOrFail($id);
 
+            Storage::delete('public/'.$drawers->photo);
+
+            $img = $request->file('photo')->store('uploads','public');
+    
+        }
+        DB::table('drawers')->where('id',$id)->update([
+            "code" => $request->input('code'),
+            "serial_t_lindus" => $request->input('serial_t_lindus'),
+            "ip_t_lindus" => $request->input('ip_t_lindus'),
+            "order" => $request->input('order'),
+            "circuit" => $request->input('circuit'),
+            "location" => $request->input('location'),
+            "vlan" => $request->input('vlan'),
+            "photo" => $img,
+            "latitude" => $request->input('latitude'),
+            "length" => $request->input('length'),
+            "command_id" => $request->input('command_center'),
+            "operability_id" => $request->input('status'),
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+            ]);
+        
+            return redirect()->route('cajas.index')->with('info','Se actualizaron los datos de la caja');
+    }
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -109,6 +147,9 @@ class DrawersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Drawer::destroy($id);
+
+        return redirect()->route('cajas.index')->with('info','Se elimino correctamente la caja');
+
     }
 }

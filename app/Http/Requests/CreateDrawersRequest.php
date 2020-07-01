@@ -30,7 +30,10 @@ class CreateDrawersRequest extends FormRequest
             'order' => 'required|alpha_num',
             'circuit' => 'required|numeric',
             'location' => 'required',
-            'vlan' => 'required|numeric'
+            'vlan' => 'required|numeric',
+            'photo' => 'required',
+            'latitude' => 'required|regex:/^(-)?[0-9]+(\.[0-9]{1,20})?$/',
+            'length' => 'required|regex:/^(-)?[0-9]+(\.[0-9]{1,20})?$/'
             // 'command_id' => 'required',
             // 'operability_id' => 'required'
         ];

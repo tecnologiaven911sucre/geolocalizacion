@@ -39,8 +39,8 @@
               <tr>
                   <th>Codigo</th>
                   <th>IP del t-lindus</th>
+                  <th>Serial del t-lindus</th>
                   <th>Orden</th>
-                  <th>Centro de comando</th>
                   <th>operatividad</th>
                   <th>Acciones</th>
               </tr>
@@ -50,8 +50,8 @@
                         <tr>
                         <td><a href="{{route('cajas.show',$drawer->id) }}">{{$drawer->code }}</a></td>
                             <td>{{$drawer->ip_t_lindus }}</td>
+                            <td>{{$drawer->serial_t_lindus}}</td>
                             <td>{{$drawer->order }}</td>
-                            <td>{{$drawer->command->state}}</td>
                             <td>{{$drawer->operability->name}}</td>
                            
                         <td>
@@ -59,7 +59,7 @@
                             <form style="display: inline" action="{{route('cajas.destroy',$drawer->id)}}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <button type="submit">Eliminar</button>
+                                <button onclick="return confirm('¿Desea eliminar cajon?')" type="submit">Eliminar</button>
                             </form>
                         </td>
                         </tr>
