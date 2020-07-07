@@ -38,31 +38,23 @@
           <thead>
               <tr>
                   <th>Direccion IP</th>
-                  <th>Codigo</th>
-                  <th>Serial</th>
                   <th>Estado</th>
+                  <th>Codigo de caja</th>
                   <th>Acciones</th>
               </tr>
           </thead>
           <tbody>
                 @foreach ($cameras as $camera)
                         <tr>
-                        <td><a href="{{route('camaras.show',$camera->id) }}">{{$camera->ip_cameras }}</a></td>
-                            <td>{{$camera->code }}</td>
-                            <td>{{$camera->serial}}</td>
-                            <td><?php 
-                                if($camera->status){
-                                    echo 'operativo';
-                                }else{
-                                    echo 'inoperativo';
-                                }?>
-                            </td>
+                        <td><a href="{{route('camaras.show',$camera->id) }}">{{$camera->ip_camera }}</a></td>
+                            <td>{{$camera->operability->name }}</td>
+                            <td>{{$camera->drawer->code}}</td>
                         <td>
-                            <a href="{{route('camaras.edit',$camera->id)}}">Editar</a>
+                            <a href="{{route('camaras.edit',$camera->id)}}" class="btn btn-primary">Editar</a>
                             <form style="display: inline" action="{{route('camaras.destroy',$camera->id)}}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <button type="submit">Eliminar</button>
+                                <button onclick="return confirm('¿Desea eliminar camara?')" class="btn btn-danger" type="submit">Eliminar</button>
                             </form>
                         </td>
                         </tr>

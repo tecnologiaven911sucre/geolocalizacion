@@ -31,9 +31,9 @@
       @if(session()->has('info'))
             <h3>{{ session('info') }}</h3>
       @endif
-       <form action="/camaras" method="POST">
-        @include('camerasRep.form')
-    </form>
+                <form action="/camaras" method="POST">
+                    @include('camerasRep.form')
+                </form>
         </div>
     </div>
 </div>

@@ -23,10 +23,6 @@ class CreateCameraRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'ip_cameras' => 'required|ip',
-            'code' => 'required',
-            'serial' => 'required'
-        ];
+        return ['ip_camera' => 'required|ip',];
     }
 }

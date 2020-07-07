@@ -67,11 +67,10 @@
     <div class="form-group">
         <label for="photo">Foto:
         </label>
-        @if($btnText)        
+        @if(isset($drawers))        
             <img class="mb-3 ml-4" src="{{asset('storage').'/'.$drawers->photo }}" alt="" width="200">
             <br>
         @endif
-
         <input type="file"  id="photo" name="photo"  value="{{old('photo')}}">{{$errors->first('photo')}}
     </div>
     <input class="btn btn-primary" type="submit" value="{{isset($btnText) ? $btnText : 'Guardar'}}" />

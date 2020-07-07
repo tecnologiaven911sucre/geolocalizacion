@@ -10,6 +10,6 @@ class Camera extends Model
         return $this->belongsTo(Drawer::class);
     }
     public function operability(){
-        return $this->belongsTo(Operability::class,'status_id');
+        return $this->belongsTo(Operability::class);
     }
 }
