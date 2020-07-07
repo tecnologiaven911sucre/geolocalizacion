@@ -28,31 +28,7 @@
       <form action="{{route('camaras.update',$cameras->id)}}" method="POST">
         @csrf
         @method('put')
-        <div class="form-group">
-            <label for="ip">Direccion IP:
-            </label>
-        <input type="text" class="form-control" id="ip" name="ip" placeholder="Ingrese la direccion IP" value="{{$cameras->ip_cameras}}">
-        {{$errors->first('ip')}}
-        </div>
-        <div class="form-group">
-            <label for="serial">Serial:
-            </label>
-        <input type="text" class="form-control" id="serial" name="serial" placeholder="Ingrese el serial" value="{{$cameras->serial}}">{{$errors->first('serial')}}
-        </div>
-        <div class="form-group">
-            <label for="codigo">Codigo:
-            </label>
-        <input type="text" class="form-control" id="codigo" name="codigo" placeholder="Ingrese el codigo" value="{{$cameras->code}}">
-        </div>{{$errors->first('codigo')}}
-        <div class="form-group">
-            <label for="estado">Estado:</label>
-            <select class="form-control" id="estado" name="estado">
-              <option value="{{$cameras->status}}">Operativa</option>
-              <option value="{{$cameras->status}}">Inoperativa</option>
-            </select>
-            {{$errors->first('estado')}}
-        </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        @include('camerasRep.form',['btnText'=> 'Actualizar'])
     </form>
 
 

@@ -3,7 +3,7 @@
         <div class="form-group">
             <label for="ip_camera">Direccion IP:
             </label>
-        <input type="text" class="form-control" id="ip_camera" name="ip_camera" placeholder="Ingrese la direccion IP" value="{{old('ip_camera')}}">
+        <input type="text" class="form-control" id="ip_camera" name="ip_camera" placeholder="Ingrese la direccion IP" value="{{ isset($cameras) ? $cameras->ip_camera : old('ip_camera')}}">
         
          {{ $errors->first('ip_camera') }}
         </div>

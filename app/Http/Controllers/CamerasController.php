@@ -93,26 +93,36 @@ class CamerasController extends Controller
             $status = Operability::all();
             $drawers = Drawer::all();
             $cameras = Camera::findOrFail($id);
-        return view('camerasRep.edit', compact('cameras','status','drawers'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
+            return view('camerasRep.edit', compact('cameras','status','drawers'));
+        }
+        
+        /**
+         * Update the specified resource in storage.
+         *
+         * @param  \Illuminate\Http\Request  $request
+         * @param  int  $id
+         * @return \Illuminate\Http\Response
+         */
+        public function update(Request $request, $id)
+    {   
+        $img = '';
+        if($request->hasFile('photo')){
+            $drawers = Drawer::findOrFail($id);
+            
+            Storage::delete('public/'.$drawers->photo);
+            
+            $img = $request->file('photo')->store('uploads','public');
+            
+        }
+        
         DB::table('cameras')->where('id',$id)->update([
-            "ip_cameras" => $request->input('ip'),
-            "code" => $request->input('codigo'),
-            "serial" => $request->input('serial'),
-            "status" => $request->input('estado'),
+            "ip_camera" => $request->input('ip_camera'),
+            "photo" => $img,
+            "operability_id" => $request->input('status'),
+            "drawer_id" => $request->input('cajas'),
             "updated_at" => Carbon::now()
-        ]);
-        return redirect()->route('camaras.index');
+            ]);
+            return redirect()->route('camaras.index')->with('info','Se actualizo la informacion de la camara');
     }
 
     /**
