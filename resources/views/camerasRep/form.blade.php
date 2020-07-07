@@ -10,11 +10,11 @@
         <div class="form-group">
             <label for="cajas">Caja:
             </label>
-             {{dd($drawers->cameras->ip_camera) }}  
         <select class="form-control form-control-sm" id="cajas" name="cajas">
             @foreach ($drawers as $drawer)
-             
+                  @if($drawer->cameras->count() < 2 )
                 <option value="{{$drawer->id}}">{{$drawer->code}}</option>
+                @endif
             @endforeach
         </select>
         </div>

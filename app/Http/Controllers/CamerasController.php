@@ -32,7 +32,7 @@ class CamerasController extends Controller
     public function create()
     {   
         $status = Operability::all();
-        $drawers = \App\Drawer::all();
+        $drawers = Drawer::all();
         return view('camerasRep.create',compact('status','drawers'));
     }
     
