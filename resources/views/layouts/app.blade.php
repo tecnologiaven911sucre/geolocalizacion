@@ -90,7 +90,8 @@
                               <a href="{{ route('camaras.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('camaras')}}">Camaras Ven9-1-1</a>
                               <a href="{{ route('cajas.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('cajas')}}">Cajas </a>
                               <a href="{{ route('estados.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('estados')}}">Estados</a>
-                              <a href="{{ route('centrodecomando.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('centrodecomando')}}">Centro de comando</a>
+                              <a href="{{ route('centrodecomando.index')}}" class="list-group-item list-group-item-action   list-group-item-primary {{activeMenu('centrodecomando')}}">Centro de comando</a>
+                              <a href="{{ route('reportes.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('reportes')}}">Reportes</a>
                                 <a href="#" class="list-group-item list-group-item-action list-group-item-primary">COVID-19</a>
                                 <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Opciones</a>
                                 @if(auth()->user()->hasRoles(["admin"]))

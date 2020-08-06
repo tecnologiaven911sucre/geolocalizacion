@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class ReportsController extends Controller
 {
@@ -13,7 +14,9 @@ class ReportsController extends Controller
      */
     public function index()
     {
-        //
+       $reports = DB::table('reports')->get();
+
+       return view('reports.index',compact('reports'));
     }
 
     /**
@@ -23,7 +26,7 @@ class ReportsController extends Controller
      */
     public function create()
     {
-        //
+        return view('reports.create');
     }
 
     /**

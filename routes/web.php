@@ -30,3 +30,4 @@ Route::resource('/usuarios','UsersController');
 Route::resource('/cajas','DrawersController');
 Route::resource('/estados','OperabilitiesController');
 Route::resource('/centrodecomando','CommandsController');
+Route::resource('/reportes','ReportsController');
