@@ -12,4 +12,8 @@ class Camera extends Model
     public function operability(){
         return $this->belongsTo(Operability::class);
     }
+    public function users(){
+        return $this->morphToMany(User::class,'report');
+    }
+    
 }
