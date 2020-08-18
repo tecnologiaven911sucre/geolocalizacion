@@ -31,5 +31,3 @@ const app = new Vue({
     el: '#app',
 });
 
-
-alert("hola hola");
