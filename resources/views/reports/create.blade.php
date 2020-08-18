@@ -21,13 +21,7 @@
                         <h3>{{ session('info') }}</h3>
                 @endif
                 <form action="/reportes" method="POST" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="exampleFormControlSelect2">Tipo de reporte</label>
-                    <select multiple class="form-control" id="exampleFormControlSelect2">
-                    <option>Camara</option>
-                    <option>Cajon</option>
-                    <option>Reporte diario</option>
-                    </select>
+                    @include('reports.form')
                 </div>
                 </form>
         </div>
