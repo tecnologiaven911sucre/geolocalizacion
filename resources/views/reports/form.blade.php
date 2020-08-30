@@ -3,6 +3,7 @@
             <label for="tipo">Tipo de reporte:
             </label>
         <select class="form-control form-control-sm" id="tipo" name="tipo">
+                <option></option>
                 <option value="1">Reporte de diario</option>
                 <option value="2">Reporte de camara</option>
                 <option value="3">Reporte de cajon</option>

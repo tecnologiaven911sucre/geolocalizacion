@@ -4,6 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+const { functionsIn } = require('lodash');
+
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -31,3 +33,14 @@ const app = new Vue({
     el: '#app',
 });
 
+$("#tipo").change(function(){
+    $.ajax({
+        type:'POST',
+        url: "{{route('reportes.create')}}",
+        data: {name: name},
+        success: function(){
+
+        }
+    })
+
+})
