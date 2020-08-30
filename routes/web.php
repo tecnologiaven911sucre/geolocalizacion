@@ -19,6 +19,14 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/','HomeController@index');
+Route::get('/',function(){
+
+    $drawer = App\Drawer::first();
+
+    $drawer->reports()->create(['review'=>'primer reporte']);
+
+    
+});
 
 
 Auth::routes();

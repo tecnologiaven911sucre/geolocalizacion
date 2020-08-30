@@ -50,14 +50,7 @@ class User extends Authenticatable
         }
         return false;
     }
-    public function cameras(){
-        return $this->morphedByMany(Camera::class, 'report');
+    public function reports(){
+        return $this->morphOne(Report::class,'reportable','reportable_type','reportable_id');
     }
-    public function drawers(){
-        return $this->morphedByMany(Drawer::class, 'report');
-    }
-    public function novelties(){
-        return $this->morphedByMany(Novelty::class, 'report');
-    }
-
 }

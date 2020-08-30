@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\User;
 
 class ReportsController extends Controller
 {
@@ -26,7 +27,8 @@ class ReportsController extends Controller
      */
     public function create()
     {
-        return view('reports.create');
+        $drawers = Drawer::with('cameras')->get();
+        return view('reports.create', compact('drawers'));
     }
 
     /**

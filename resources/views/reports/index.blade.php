@@ -32,7 +32,7 @@
           <tbody>
                 @foreach ($reports as $report)
                         <tr>
-                        <td>{{$report->users->name }}</td>
+                        <td>{{$report->review }}</td>
                         <td>{{$report->review }}</td>
                         <td>
                             <a href="{{route('estados.edit',$report->id)}}">Editar</a>

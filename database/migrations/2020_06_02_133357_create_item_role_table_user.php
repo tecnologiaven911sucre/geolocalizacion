@@ -14,7 +14,7 @@ class CreateItemRoleTableUser extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('role_id')->after('password')->nullable();
+            $table->integer('role_id')->after('password')->unsigned()->default(2);
         });
     }
 

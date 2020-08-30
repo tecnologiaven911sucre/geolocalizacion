@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Novelty extends Model
 {
-    public function users(){
-        return $this->morphToMany(User::class,'report');
+    public function reports(){
+        return $this->morphOne(Report::class,'reportable','reportable_type','reportable_id');
     }
 }

@@ -15,7 +15,7 @@ class Drawer extends Model
     public function cameras(){
         return $this->hasMany(Camera::class);
     }
-    public function users(){
-        return $this->morphToMany(User::class,'report');
+    public function reports(){
+        return $this->morphOne(Report::class,'reportable','reportable_type','reportable_id');
     }
 }
