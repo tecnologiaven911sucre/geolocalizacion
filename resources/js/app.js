@@ -33,14 +33,38 @@ const app = new Vue({
     el: '#app',
 });
 
-$("#tipo").change(function(){
-    $.ajax({
-        type:'POST',
-        url: "{{route('reportes.create')}}",
-        data: {name: name},
-        success: function(){
+$(document).ready(function(){
 
-        }
-    })
-
+        let optionReport = $("#tipo");
+        
+        optionReport.change(function(){
+            let valueOpt = optionReport.val();
+                if(valueOpt == 1){
+                    $("#textReport").css("display","block")
+                    $("#camerasReport").css("display","none")
+                    $("#drawersReport").css("display","none")
+                }else if(valueOpt == 2){
+                    $("#textReport").css("display","block")
+                    $("#camerasReport").css("display","block")
+                    $("#drawersReport").css("display","none")
+                }else {
+                    $("#textReport").css("display","block")
+                    $("#camerasReport").css("display","none")
+                    $("#drawersReport").css("display","block")
+                }              
+                
+                
+                
+                // $.ajax({
+                //     url: "/reportes/ajax",
+                //     type:'POST',
+                //     data: {id: valueOpt,
+                //         _token: $('input[name="_token"]').val() 
+                //     },
+                //     success: function(response){
+                //         console.log(response);
+                //     }
+                // })
+        
+        })
 })

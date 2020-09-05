@@ -10,24 +10,36 @@
         </select>
         <!-- {{$errors->first('$status')}} -->
         </div>
-        <div class="form-group">
-            <label for="name">Estado:
-            </label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese un nuevo estado de operatividad" value="{{ isset($status) ? $status->name : old('name') }}">
-        {{$errors->first('name')}}
-        </div>
-        <div class="form-group">
-            <label for="status">Estado:
-            </label>
-        <select class="form-control form-control-sm" id="status" name="status">
         
-        </select>
-        <div class="form-group">
-            @foreach ($users->drawers() as $ope)
-                <option value="{{$ope->id}}">{{$ope->name}}</option>
-            @endforeach
+        <div id="camerasReport" class="form-group ">
+            <label for="cameras">Camaras:
+            </label>
+            <div class="form-group">
+            <select class="form-control form-control-sm" id="cameras" name="cameras">
+                    <option>Seleccione una opcion</option>
+                @foreach ($cameras as $camera)
+                    <option value="{{$camera->id}}">{{$camera->ip_camera}}</option>
+                @endforeach
+            </select>
         </div>
     <!-- {{$errors->first('$status')}} -->
     </div>
-        
+    <div id="drawersReport" class="form-group ">
+        <label for="cameras">Cajones:
+        </label>
+        <div class="form-group">
+        <select class="form-control form-control-sm" id="status" name="status">
+                <option>Seleccione una opcion</option>
+            @foreach ($drawers as $drawer)
+                <option value="{{$drawer->id}}">{{$drawer->code}}</option>
+            @endforeach
+        </select>
+        </div>
+    </div>
+    <div id="textReport" class="form-group ">
+    <label for="review">Reportar</label>
+    <textarea class="form-control" id="review" rows="5" placeholder="Ingrese el texto del reporte"></textarea>
+  </div>
+    
+    
         <input class="btn btn-primary" type="submit" value="{{ isset($btnText) ? $btnText : 'Guardar'}}" />

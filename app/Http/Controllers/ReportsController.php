@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\User;
+use App\Drawer;
+use App\Camera;
 
 class ReportsController extends Controller
 {
@@ -19,16 +21,26 @@ class ReportsController extends Controller
 
        return view('reports.index',compact('reports'));
     }
+    public function ajax(Request $request)
+    {
+       
+        if($request->ajax()){
+            return $request->id;
+        }
+       
+    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $drawers = Drawer::with('cameras')->get();
-        return view('reports.create', compact('drawers'));
+        $drawers = Drawer::all();
+        $cameras = Camera::all();
+
+        return view('reports.create', compact('drawers','cameras'));
     }
 
     /**

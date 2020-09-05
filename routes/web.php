@@ -19,14 +19,19 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/','HomeController@index');
-Route::get('/',function(){
 
-    $drawer = App\Drawer::first();
+// DB::listen(function($query){
+//     echo "<pre>{$query->sql}</pre>";
+// });
 
-    $drawer->reports()->create(['review'=>'primer reporte']);
+    // Route::get('/',function(){
 
-    
-});
+    //     $drawer = App\Drawer::first();
+
+    //     $drawer->reports()->create(['review'=>'primer reporte']);
+
+        
+    // });
 
 
 Auth::routes();
@@ -39,3 +44,4 @@ Route::resource('/cajas','DrawersController');
 Route::resource('/estados','OperabilitiesController');
 Route::resource('/centrodecomando','CommandsController');
 Route::resource('/reportes','ReportsController');
+Route::post('/reportes/ajax', 'ReportsController@ajax');

@@ -10882,3 +10882,9 @@ a.text-dark:focus {
   }
 }
 
+#camerasReport,
+#drawersReport,
+#textReport {
+  display: none;
+}
+
