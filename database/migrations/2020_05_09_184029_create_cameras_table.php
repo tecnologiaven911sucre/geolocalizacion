@@ -15,11 +15,10 @@ class CreateCamerasTable extends Migration
     {
         Schema::create('cameras', function (Blueprint $table) {
             $table->id();
-            $table->string('ip_cameras');
-            $table->string('code');
-            $table->text('serial');
-            $table->integer('status_id');
-            $table->integer('drawer_id');
+            $table->string('ip_camera');
+            $table->string('photo');
+            $table->integer('operability_id')->unsigned()->default(0);
+            $table->integer('drawer_id')->unsigned()->default(0);
             $table->timestamps();
         });
     }
