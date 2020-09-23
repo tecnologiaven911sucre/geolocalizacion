@@ -7,6 +7,7 @@ use DB;
 use App\User;
 use App\Drawer;
 use App\Camera;
+use App\Novelty;
 
 class ReportsController extends Controller
 {
@@ -51,7 +52,34 @@ class ReportsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->input('tipo') == 1){
+            
+            $novelty = Novelty::first();
+            $novelty->reports()->create([
+                'review' => $request->input('review')
+            ]);
+            return 'listo';
+        }
+        if($request->input('tipo') == 2){
+            $id = $request->input('cameras');
+
+            $camera = Camera::find($id);
+            $camera->reports()->create([
+                'user_id' => Auth::id(), 
+                'review' => $request->input('review')
+            ]);
+            return 'listo';
+        }
+        if($request->input('tipo') == 3){
+            $id = $request->input('drawers');
+
+            $camera = Drawer::find($id);
+            $camera->reports()->create([
+                'review' => $request->input('review')
+            ]);
+            return 'listo cajas';
+        }
+        
     }
 
     /**
