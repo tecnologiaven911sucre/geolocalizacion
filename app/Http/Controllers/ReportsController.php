@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use DB;
 use App\User;
 use App\Drawer;
 use App\Camera;
 use App\Novelty;
+use App\Report;
 
 class ReportsController extends Controller
 {
@@ -18,7 +20,7 @@ class ReportsController extends Controller
      */
     public function index()
     {
-       $reports = DB::table('reports')->get();
+       $reports = Report::with('user')->get();
 
        return view('reports.index',compact('reports'));
     }
@@ -52,33 +54,35 @@ class ReportsController extends Controller
      */
     public function store(Request $request)
     {
+        $userAuth = Auth::id();
+
         if($request->input('tipo') == 1){
-            
             $novelty = Novelty::first();
             $novelty->reports()->create([
+                'user_id' => $userAuth,
                 'review' => $request->input('review')
-            ]);
-            return 'listo';
-        }
-        if($request->input('tipo') == 2){
-            $id = $request->input('cameras');
-
-            $camera = Camera::find($id);
-            $camera->reports()->create([
-                'user_id' => Auth::id(), 
-                'review' => $request->input('review')
-            ]);
-            return 'listo';
+                ]);
+            }
+            if($request->input('tipo') == 2){
+                $id = $request->input('cameras');
+                
+                $camera = Camera::find($id);
+                $camera->reports()->create([
+                    'user_id' => $userAuth,
+                    'review' => $request->input('review')
+                    ]);
+            
         }
         if($request->input('tipo') == 3){
             $id = $request->input('drawers');
-
+            
             $camera = Drawer::find($id);
             $camera->reports()->create([
+                'user_id' => $userAuth,
                 'review' => $request->input('review')
             ]);
-            return 'listo cajas';
         }
+        return redirect()->route('reportes.index')->with('info','Se ha creado un reporte');
         
     }
 

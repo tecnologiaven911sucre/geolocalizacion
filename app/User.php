@@ -51,6 +51,6 @@ class User extends Authenticatable
         return false;
     }
     public function reports(){
-        return $this->morphOne(Report::class,'reportable','reportable_type','reportable_id');
+        return $this->hasMany(Report::class);
     }
 }
