@@ -43,7 +43,7 @@ class ReportsController extends Controller
         $drawers = Drawer::all();
         $cameras = Camera::all();
 
-        return view('reports.create', compact('drawers','cameras'));
+        return view('reports.create',['reports' => new Report], compact('drawers','cameras'));
     }
 
     /**
@@ -104,8 +104,20 @@ class ReportsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $reports = Report::findOrFail($id);
+        if($reports->reportable_type == "App\Novelty"){
+            return view('reports.edit', compact('reports'));
+        }
+        if($reports->reportable_type == "App\Camera"){
+            $cameras = Camera::all();
+            return view('reports.edit', compact('reports','cameras'));
+        }
+        if($reports->reportable_type == "App\Drawer"){
+            $drawers = Drawer::all();
+            return view('reports.edit', compact('reports','drawers'));
+        }
+
     }
 
     /**

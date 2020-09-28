@@ -35,8 +35,8 @@
                         <td>{{ $report->user->name ? $report->user->name : '' }}</td>
                         <td>{{$report->review }}</td>
                         <td>
-                            <a href="{{route('estados.edit',$report->id)}}">Editar</a>
-                            <form style="display: inline" action="{{route('estados.destroy',$report->id)}}" method="POST">
+                            <a href="{{route('reportes.edit',$report->id)}}">Editar</a>
+                            <form style="display: inline" action="{{route('reportes.destroy',$report->id)}}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
