@@ -76,8 +76,8 @@ class ReportsController extends Controller
         if($request->input('tipo') == 3){
             $id = $request->input('drawers');
             
-            $camera = Drawer::find($id);
-            $camera->reports()->create([
+            $drawer = Drawer::find($id);
+            $drawer->reports()->create([
                 'user_id' => $userAuth,
                 'review' => $request->input('review')
             ]);
@@ -129,7 +129,33 @@ class ReportsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $reports = Report::findOrFail($id);
+        $userAuth = Auth::id();
+
+        if($reports->reportable_type == "App\Novelty"){
+            $novelty = Novelty::find($id);
+            $novelty->reports()->save([
+                'user_id' => $userAuth,
+                'review' => $request->input('review')
+                ]);
+        }
+        if($reports->reportable_type == "App\Camera"){
+            $camera = Camera::find($id);
+            $camera->reports()->save([
+                'user_id' => $userAuth,
+                'review' => $request->input('review')
+                ]);
+        }
+        if($reports->reportable_type == "App\Drawer"){
+            $drawer = Drawer::find($id);
+            $drawer->reports()->save([
+                'user_id' => $userAuth,
+                'review' => $request->input('review')
+                ]);
+        }
+
+        return redirect()->route('reportes.index')->with('info','Se actualizo el reporte');
+
     }
 
     /**

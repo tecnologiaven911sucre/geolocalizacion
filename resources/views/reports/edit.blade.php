@@ -23,13 +23,8 @@
                 @endif
                 <form action="{{route('reportes.update',$reports->id)}}" method="POST" enctype="multipart/form-data">
                     @method('put')
-                    @if($reports->reportable_type == 'App\Camera')
-                        {{$option = 'camerasReport'}}
-                    @endif
-                    @if($reports->reportable_type == 'App\Drawer')
-                        {{$option = 'drawersReport'}}
-                    @endif
-                        @include('reports.form',['btnText' => 'Actualizar','areatexto'=>'', 'cameraOrDrawer' => $option])
+                    
+                    @include('reports.form',['btnText' => 'Actualizar','areatexto'=>''])
                     
                 </form>
         </div>
