@@ -95,7 +95,10 @@ class ReportsController extends Controller
      */
     public function show($id)
     {
-        //
+        $reports = Report::findOrFail($id);
+        $cameras = Camera::all();
+        $drawers = Drawer::all();
+        return view('reports.show', compact('reports','cameras','drawers'));
     }
 
     /**
@@ -133,28 +136,6 @@ class ReportsController extends Controller
         $reports = Report::findOrFail($id);
         $userAuth = Auth::id();
 
-        // if($reports->reportable_type == "App\Novelty"){
-        //     $novelty = Novelty::find($id);
-        //     $novelty->reports()->save([
-        //         'user_id' => $userAuth,
-        //         'review' => $request->input('review')
-        //         ]);
-        // }
-        // if($reports->reportable_type == "App\Camera"){
-        //     $camera = Camera::find($id);
-        //     $camera->reports()->save([
-        //         'user_id' => $userAuth,
-        //         'review' => $request->input('review')
-        //         ]);
-        // }
-        // if($reports->reportable_type == "App\Drawer"){
-        //     $drawer = Drawer::find($id);
-        //     $drawer->reports()->save([
-        //         'user_id' => $userAuth,
-        //         'review' => $request->input('review')
-        //         ]);
-        //     }
-            
             DB::table('reports')->where('id',$id)->update([
                 'user_id' => $userAuth,
                 'review' => $request->input('review'),

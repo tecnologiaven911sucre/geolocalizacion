@@ -24,16 +24,30 @@
       <table class="table">
           <thead>
               <tr>
-                  <th>Usuario</th>
                   <th>Reporte</th>
+                  <th>Tipo</th>
+                  <th>Usuario</th>
+                  <th>Fecha</th>
                   <th>Accion</th>
               </tr>
           </thead>
           <tbody>
                 @foreach ($reports as $report)
                         <tr>
+                            <td ><a class="d-inline-block text-truncate" style="max-width: 200px;" href="{{route('reportes.show',$report->id) }}">{{  $report->review }}</a></td>
+                            <td>
+                                @if($report->reportable_type == "App\Novelty" )
+                                diario 
+                                @endif
+                                @if($report->reportable_type == "App\Camera" )
+                                camara 
+                                @endif
+                                @if($report->reportable_type == "App\Drawer" )
+                                cajon 
+                                @endif
+                            </td>
                         <td>{{ $report->user->name ? $report->user->name : '' }}</td>
-                        <td>{{$report->review }}</td>
+                        <td>{{$report->created_at }}</td>
                         <td>
                             <a href="{{route('reportes.edit',$report->id)}}">Editar</a>
                             <form style="display: inline" action="{{route('reportes.destroy',$report->id)}}" method="POST">
