@@ -10,6 +10,7 @@ use App\Drawer;
 use App\Camera;
 use App\Novelty;
 use App\Report;
+use Carbon\Carbon;
 
 class ReportsController extends Controller
 {
@@ -132,27 +133,33 @@ class ReportsController extends Controller
         $reports = Report::findOrFail($id);
         $userAuth = Auth::id();
 
-        if($reports->reportable_type == "App\Novelty"){
-            $novelty = Novelty::find($id);
-            $novelty->reports()->save([
+        // if($reports->reportable_type == "App\Novelty"){
+        //     $novelty = Novelty::find($id);
+        //     $novelty->reports()->save([
+        //         'user_id' => $userAuth,
+        //         'review' => $request->input('review')
+        //         ]);
+        // }
+        // if($reports->reportable_type == "App\Camera"){
+        //     $camera = Camera::find($id);
+        //     $camera->reports()->save([
+        //         'user_id' => $userAuth,
+        //         'review' => $request->input('review')
+        //         ]);
+        // }
+        // if($reports->reportable_type == "App\Drawer"){
+        //     $drawer = Drawer::find($id);
+        //     $drawer->reports()->save([
+        //         'user_id' => $userAuth,
+        //         'review' => $request->input('review')
+        //         ]);
+        //     }
+            
+            DB::table('reports')->where('id',$id)->update([
                 'user_id' => $userAuth,
-                'review' => $request->input('review')
-                ]);
-        }
-        if($reports->reportable_type == "App\Camera"){
-            $camera = Camera::find($id);
-            $camera->reports()->save([
-                'user_id' => $userAuth,
-                'review' => $request->input('review')
-                ]);
-        }
-        if($reports->reportable_type == "App\Drawer"){
-            $drawer = Drawer::find($id);
-            $drawer->reports()->save([
-                'user_id' => $userAuth,
-                'review' => $request->input('review')
-                ]);
-        }
+                'review' => $request->input('review'),
+                'updated_at' => Carbon::now()
+            ]);
 
         return redirect()->route('reportes.index')->with('info','Se actualizo el reporte');
 

@@ -132,7 +132,6 @@ class DrawersController extends Controller
             "length" => $request->input('length'),
             "command_id" => $request->input('command_center'),
             "operability_id" => $request->input('status'),
-            "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
             ]);
         
