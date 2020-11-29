@@ -55,7 +55,6 @@
                 <p><strong>Usuario creador:</strong>  {{$reports->user->name ? $reports->user->name : '' }} </p>
                 <p><strong>Fecha de creacion:</strong>  {{$reports->created_at}} </p>
                 <p><strong>Fecha de modificacion:</strong>  {{$reports->updated_at}} </p>
-                
             </div>
             
         </div>
