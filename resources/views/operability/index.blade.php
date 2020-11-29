@@ -50,7 +50,7 @@
                             <form style="display: inline" action="{{route('estados.destroy',$stt->id)}}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                                <button onclick="return confirm('¿Desea eliminar estado de operatividad?')" class="btn btn-danger btn-sm" type="submit">Eliminar</button>
                             </form>
                         </td>
                         </tr>

@@ -173,6 +173,8 @@ class ReportsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Report::destroy($id);
+
+        return redirect()->route('cajas.index')->with('info','Se elimino correctamente la caja');
     }
 }
