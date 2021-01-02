@@ -40,6 +40,10 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo(Role::class);
     }
+    
+    public function group(){
+        return $this->belongsTo(Group::class);
+    }
 
     public function hasRoles(array $roles){
 

@@ -96,6 +96,7 @@
                                 <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Opciones</a>
                                 @if(auth()->user()->hasRoles(["admin"]))
                                 <a href="{{ route('usuarios.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('usuarios')}} ">Usuarios</a>
+                                <a href="{{ route('grupos.index')}}" class="list-group-item list-group-item-action list-group-item-primary {{activeMenu('grupos')}} ">Grupos</a>
                                 @endif
 
                               </div>

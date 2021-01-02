@@ -44,4 +44,5 @@ Route::resource('/cajas','DrawersController');
 Route::resource('/estados','OperabilitiesController');
 Route::resource('/centrodecomando','CommandsController');
 Route::resource('/reportes','ReportsController');
+Route::resource('/grupos','GroupController');
 Route::post('/reportes/ajax', 'ReportsController@ajax');
