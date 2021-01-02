@@ -20,6 +20,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','HomeController@index');
 
+// DB::listen(function($query){
+//     echo "<pre>{$query->sql}</pre>";
+// });
+
+    // Route::get('/',function(){
+
+    //     $drawer = App\Drawer::first();
+
+    //     $drawer->reports()->create(['review'=>'primer reporte']);
+
+        
+    // });
+
 
 Auth::routes();
 
@@ -28,5 +41,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/camaras','CamerasController');
 Route::resource('/usuarios','UsersController');
 Route::resource('/cajas','DrawersController');
-Route::resource('/estados','StatusController');
-Route::resource('/centrodecomando','CcommandController');
+Route::resource('/estados','OperabilitiesController');
+Route::resource('/centrodecomando','CommandsController');
+Route::resource('/reportes','ReportsController');
+Route::post('/reportes/ajax', 'ReportsController@ajax');

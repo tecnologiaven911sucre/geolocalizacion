@@ -31,8 +31,9 @@
                 @if(session()->has('info'))
                         <h3>{{ session('info') }}</h3>
                 @endif
-                <form action="/cajas" method="POST" enctype="multipart/form-data">
-                    @include('drawers.form')
+                <form action="{{route('cajas.update',$drawers->id)}}" method="POST" enctype="multipart/form-data">
+                    @method('put')
+                    @include('drawers.form',['btnText' => 'Actualizar'])
                 </form>
         </div>
     </div>

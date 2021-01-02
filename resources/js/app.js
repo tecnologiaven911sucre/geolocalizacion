@@ -4,6 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+const { functionsIn } = require('lodash');
+
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -30,3 +32,39 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+$(document).ready(function(){
+
+        let optionReport = $("#tipo");
+        
+        optionReport.change(function(){
+            let valueOpt = optionReport.val();
+                if(valueOpt == 1){
+                    $("#textReport").css("display","block")
+                    $("#camerasReport").css("display","none")
+                    $("#drawersReport").css("display","none")
+                }else if(valueOpt == 2){
+                    $("#textReport").css("display","block")
+                    $("#camerasReport").css("display","block")
+                    $("#drawersReport").css("display","none")
+                }else {
+                    $("#textReport").css("display","block")
+                    $("#camerasReport").css("display","none")
+                    $("#drawersReport").css("display","block")
+                }              
+                
+                
+                
+                // $.ajax({
+                //     url: "/reportes/ajax",
+                //     type:'POST',
+                //     data: {id: valueOpt,
+                //         _token: $('input[name="_token"]').val() 
+                //     },
+                //     success: function(response){
+                //         console.log(response);
+                //     }
+                // })
+        
+        })
+})

@@ -4,7 +4,7 @@
 
 <div class="col-md-9">
     <div class="card">
-        <div class="card-header">Camara</div>
+        <div class="card-header">Estados</div>
 
         <div class="card-body">
             @if (session('status'))
@@ -18,10 +18,10 @@
         {{-- <h1 class="h2">Crear camara</h1> --}}
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" href="{{route('camaras.index')}}">Listado de Camaras</a>
+                <a class="nav-link" href="{{route('estados.index')}}">Listado de estatus</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{route('camaras.create')}}">Registro de Camara</a>
+                <a class="nav-link active" href="{{route('estados.create')}}">Registrar estatus</a>
             </li>
         </ul>
         
@@ -31,9 +31,10 @@
       @if(session()->has('info'))
             <h3>{{ session('info') }}</h3>
       @endif
-                <form action="/camaras" method="POST">
-                    @include('camerasRep.form')
-                </form>
+       <form action="{{route('estados.update',$status->id)}}" method="POST">
+        @method('put')
+        @include('operability.form',['btnText' => 'Actualizar'])
+    </form>
         </div>
     </div>
 </div>

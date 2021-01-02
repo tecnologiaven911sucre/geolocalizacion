@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePerfilsTable extends Migration
+class AddItemsNoveltyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreatePerfilsTable extends Migration
      */
     public function up()
     {
-        Schema::create('perfils', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('lastName');
-            $table->integer('position_id');
-            $table->integer('user_id');
-            $table->timestamps();
+        Schema::table('novelties', function (Blueprint $table) {
+            //
         });
     }
 
@@ -30,6 +25,8 @@ class CreatePerfilsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('perfils');
+        Schema::table('novelties', function (Blueprint $table) {
+            //
+        });
     }
 }

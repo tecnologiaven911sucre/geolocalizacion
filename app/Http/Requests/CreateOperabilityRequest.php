@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateCameraRequest extends FormRequest
+class CreateOperabilityRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,6 +23,8 @@ class CreateCameraRequest extends FormRequest
      */
     public function rules()
     {
-        return ['ip_camera' => 'required|ip',];
+        return [
+            'name' => 'required',
+        ];
     }
 }

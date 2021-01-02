@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Auth;
 
-class CreateStatusesTable extends Migration
+class CreateReportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +14,12 @@ class CreateStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('statuses', function (Blueprint $table) {
+        Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->string('operability');
+            $table->integer('user_id')->nullable();
+            $table->text('review');
+            $table->integer('reportable_id')->unsigned();
+            $table->string('reportable_type');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statuses');
+        Schema::dropIfExists('reports');
     }
 }

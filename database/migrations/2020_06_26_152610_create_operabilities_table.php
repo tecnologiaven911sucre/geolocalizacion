@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItemRoleTableUser extends Migration
+class CreateOperabilitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateItemRoleTableUser extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('role_id')->after('password')->unsigned()->default(2);
+        Schema::create('operabilities', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class CreateItemRoleTableUser extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role_id');
-        });
+        Schema::dropIfExists('operabilities');
     }
 }
